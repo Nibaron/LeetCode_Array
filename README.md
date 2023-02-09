@@ -617,4 +617,104 @@ public:
     }
 };
 ```
+**Task#13**
+## Third Maximum Number
 
+> Sample Input and Output
+```
+Given an integer array nums, return the third distinct maximum number in this array.
+If the third maximum does not exist, return the maximum number.
+
+Input: nums = [3,2,1]
+Output: 1
+Explanation:
+The first distinct maximum is 3.
+The second distinct maximum is 2.
+The third distinct maximum is 1.
+
+Input: nums = [1,2]
+Output: 2
+Explanation:
+The first distinct maximum is 2.
+The second distinct maximum is 1.
+The third distinct maximum does not exist, so the maximum (2) is returned instead.
+```
+> Approach
+
+First, we take another array where we push only distinct sorted values.
+Then we return the 3rd value from the last position.
+
+> Code
+```
+class Solution {
+public:
+    int thirdMax(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        
+        vector <int> snums;
+        snums.push_back(nums[0]);
+        int t=0;
+        for(int i=1; i<nums.size(); i++)
+        {
+            if(snums[t]!=nums[i])
+            {
+                snums.push_back(nums[i]);
+                t++;
+            }
+        }
+        if(t<2)
+            return snums[t];
+        else
+            return snums[t-2];
+            
+    }
+};
+```
+**Task# 14**
+##  Find All Numbers Disappeared in an Array
+
+>Sample Input and Output
+```
+Given an array nums of n integers where nums[i] is in the range [1, n], return an array of all the integers in the range [1, n] that do not appear in nums.
+
+ 
+
+Example 1:
+
+Input: nums = [4,3,2,7,8,2,3,1]
+Output: [5,6]
+Example 2:
+
+Input: nums = [1,1]
+Output: [2]
+```
+> Approach
+
+1.First, we sort the array.
+2.Create an new array temp with initial value of 0.
+3.We replace the value of 0 with 1, at the position of nums array.
+4.Where we find 0, push it to the res array and return it.
+
+> Code
+```
+class Solution {
+public:
+    vector<int> findDisappearedNumbers(vector<int>& nums) {
+        int sz=nums.size();
+        vector<int> temp(sz+1,0),res;
+        sort(nums.begin(),nums.end());
+        
+        for(int i=0; i<sz; i++)
+        {
+            temp[nums[i]]=1;
+        }
+        for(int i=1; i<=sz; i++)
+        {
+            if(temp[i]==0)
+                res.push_back(i);
+                
+        }
+       return res; 
+    }
+};
+```
