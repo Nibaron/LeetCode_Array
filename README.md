@@ -319,3 +319,86 @@ public:
     }
 };
 ```
+
+**Task#6**
+Remove Duplicates from Sorted Array
+
+> Approach  `two pointer approach`
+
+> My Code
+```
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+     if(nums.size()==0)
+         return 0;
+    int len=1;
+    for(int i=1; i<nums.size(); i++)
+    {
+        if(nums[i]!=nums[i-1])
+        {
+            nums[len]=nums[i];
+            len++;
+        }
+    }
+        return len;
+    }
+};
+```
+
+**Task#7**
+ Check If N and Its Double Exist
+ 
+ > Sample Input Output
+```
+Input: arr = [10,2,5,3]
+Output: true
+Explanation: For i = 0 and j = 2, arr[i] == 10 == 2 * 5 == 2 * arr[j]
+Input: arr = [3,1,7,11]
+Output: false
+Explanation: There is no i and j that satisfy the conditions.
+```
+> My Approach
+
+We can solve it using nested loop.
+
+> My Code
+```
+class Solution {
+public:
+    bool checkIfExist(vector<int>& arr) {
+        
+        for(int i=0; i<arr.size(); i++)
+        {
+           for(int j=0; j<arr.size(); j++) 
+           {
+               if(i != j && arr[i]==2*arr[j])
+                   return true;
+           }
+        }
+        return false;
+    }
+};
+```
+
+> Approach 2
+We can solve it using the set function.
+1. First, create a set.
+2. For a value n, find 2*n or if n is even , find n/2.
+
+> Code
+
+```
+class Solution {
+public:
+    bool checkIfExist(vector<int>& arr) {
+        unordered_set<int> set;
+        for(int i=0;i<arr.size();i++){
+            if(set.count(2*arr[i])>0 || ((arr[i]%2==0) && set.count(arr[i]/2)>0))
+                return true;
+            set.insert(arr[i]);
+        }
+        return false;
+    }
+};
+```
