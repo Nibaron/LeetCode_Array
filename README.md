@@ -207,3 +207,53 @@ public:
     }
 };
 ```
+
+
+**Task #4**
+## Duplicate Zeros
+> Sample Input Output
+```
+Given a fixed-length integer array `arr`, duplicate each occurrence of zero, shifting the remaining elements to the right.
+
+Note that elements beyond the length of the original array are not written. 
+
+Do the above modifications to the input array in place and do not return anything.
+
+Input: [1,0,2,3,0,4,5,0]
+Output: [1,0,0,2,3,0,0,4]
+Explanation: After calling your function, the input array is modified to: [1,0,0,2,3,0,0,4]
+
+if any `0` found, do a `left shift` operation.
+
+```
+> My Approach
+
+```
+Take another vector, push values, if 0 found,
+push another 0 too. Do it until nums.size().
+
+REMEMBER, if we don't use another vector, then we have to use nested loop.
+Then, complexity O(n^2).
+My code has O(n).
+
+```
+> My Code
+```
+class Solution {
+public:
+    void duplicateZeros(vector<int>& arr) {
+        vector <int> nums;
+        for(int i=0; i<arr.size(); i++)
+        {
+            nums.push_back(arr[i]);
+            
+            if(arr[i]==0)
+                nums.push_back(0);
+        }
+        for(int i=0; i<arr.size(); i++)
+        {
+            arr[i]=nums[i];
+        }
+    }
+};
+```
