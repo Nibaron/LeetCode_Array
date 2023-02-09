@@ -48,3 +48,125 @@ public:
         return max_cnt;
     }
 ```
+**Task #2**
+## Find Numbers with Even Number of Digits
+> Sample Input Output
+```
+Given an array `nums` of integers, return how many of them contain an even number of digits.
+Input: nums = [12,345,2,6,7896]
+Output: 2
+Explanation: 12-> 2 digits, 345-> 3 digits, 2,6-> 1 digit, 7896-> 4 digits.
+
+```
+> My Approach
+
+```
+Use a function called `digit` to calculate digit of any number.
+Then we call this function for each numbers in the array and count the even numbers.
+
+```
+> My Code
+```
+class Solution {
+public:
+    int digit(int num)
+    {
+        int flag=0;
+        while(num>0)
+        {
+            num=num/10;
+            flag++;
+        }
+        return flag;
+    }
+    
+    int findNumbers(vector<int>& nums) {
+        int count=0;
+        for(int i=0; i<nums.size();i++)
+        {
+            int check=digit(nums[i]);
+            
+            if(check%2==0)
+                count++;
+                
+        }
+        return count;
+    }
+};
+```
+> Approach 2
+
+We can calculate digits using logarithm function.
+`((int(log10(num)+1)) % 2) == 0`
+
+>Code
+```
+#include<math.h>
+class Solution {
+public:
+    int findNumbers(vector<int>& nums) {
+        int count=0;
+        for(auto const num : nums){
+            if(((int(log10(num)+1)) % 2) == 0){
+            count++;
+            }
+        }
+        return count;
+    }
+};
+```
+>Approach 3
+
+Only numbers between 10 and 99 or 1000 and 9999 or 100000 have even number of digits.
+
+1-9 > odd
+
+10-99 > even
+
+100-999 > odd
+
+1000-9999 > even
+
+10000 - 99999 > odd
+
+100000= even
+
+Taking advantage of nums[i] <= 10^5(given Constrain)
+
+>Code
+```
+class Solution {
+public:
+    int findNumbers(vector<int>& nums) {
+        int n,count=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            n=nums[i];
+            if(( 10<=n && n<=99) || (1000<=n && n<=9999 ) || ( n==100000 ))
+            {
+               count++;
+            }
+        }
+        return count;
+    }
+};
+```
+>Approach 4
+
+Convert the number to string. Using string.length(), we can find the length.
+If it is even , increment the count.
+
+>Code
+```
+class Solution {
+public:
+    int findNumbers(vector<int>& nums) {
+    int count=0;
+    for(auto e : nums) 
+        if(to_string(e).length()%2==0) count++;
+
+    return count;
+    }
+}
+```
+
