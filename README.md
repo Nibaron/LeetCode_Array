@@ -1,58 +1,39 @@
 # Array-101
-```Arrays are a simple data structure for storing lots of similar items. They exist in all programming languages, and are used as the basis for most other data structures. On their own, Arrays can be used to solve many interesting problems. Arrays come up very often in interview problems, and so being a guru with them is a must!```
+
+Arrays are a simple data structure for storing lots of similar items. They exist in all programming languages, and are used as the basis for most other data structures. On their own, Arrays can be used to solve many interesting problems. Arrays come up very often in interview problems, and so being a guru with them is a must!
+
 **Task #1**
-## Remove Duplicates from Sorted Array
+## Max Consecutive Ones
 > Sample Input Output
 ```
-Input: nums = [1,1,2]
-Output: 2, nums = [1,2,_]
-Explanation: Your function should return k = 2, with the first two elements of nums being 1 and 2 respectively.
-It does not matter what you leave beyond the returned k (hence they are underscores).
-```
-> Approach
-
-We will use a variable called `len`. First, element will always unique, so the loop will start with 1.
-The array is already sorted, so repeated value comes in neighbourhood.
-If the `nums[i]` not equal to `nums[n-1]` its unique. so replace `nums[len]` with `nums[i]`.
-```
-Example:
-1-2(i & len)-2-2-3-4-4
-1st iteration
-2 != 1 so, 2(len) will be upadted with 2(i).
-
-1-2-2(i & len)-2-3-4-4
-2nd iteration
-2==2 so, i will be incremented, not len.
-
-1-2-2(len)-2(i)-3-4-4
-3rd iteration
-2==2 so, i will be incremented, not len.
-
-1-2-2(len)-2-3(i)-4-4
-4th iteration
-3!=2, so 2 (len) will be upadted with 3 (i).
-
-it will continue like this.
+Given a binary array nums, return the maximum number of consecutive 1's in the array
+Input: nums = [1,1,0,1,1,1]
+Output: 3
+Explanation: The first two digits or the last three digits are consecutive 1s. The maximum number of consecutive 1s is 3.
 
 ```
 > The Code
 ```
 class Solution {
 public:
-    int removeDuplicates(vector<int>& nums) {
-     if(nums.size()==0) //for null vector
-         return 0;
-		 
-    int len=1;
-    for(int i=1; i<nums.size(); i++)
-    {
-        if(nums[i]!=nums[i-1])
+    int findMaxConsecutiveOnes(vector<int>& nums) {
+        int res=0,count=0;
+        for(int i=0; i<nums.size(); i++)
         {
-            nums[len]=nums[i]; //nums[len] will store the unique numbers only
-            len++;
-        }
+            if(nums[i]==1)
+            {
+                count++;
+            }
+            
+            if(nums[i]!=1)
+            {
+                count=0;
+            }
+            
+            if(count>res)
+                res=count;      
     }
-        return len;
+        return res;
     }
 };
 ```
