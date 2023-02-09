@@ -322,7 +322,7 @@ public:
 ```
 
 **Task#6**
-##Remove Duplicates from Sorted Array
+## Remove Duplicates from Sorted Array
 
 > Approach  `two pointer approach`
 
@@ -348,7 +348,7 @@ public:
 ```
 
 **Task#7**
- ##Check If N and Its Double Exist
+ ## Check If N and Its Double Exist
  
  > Sample Input Output
 ```
@@ -403,6 +403,58 @@ public:
             set.insert(arr[i]);
         }
         return false;
+    }
+};
+```
+**Task #8 **
+## Valid Mountain Array
+
+https://leetcode.com/explore/learn/card/fun-with-arrays/527/searching-for-items-in-an-array/3251/
+ 
+ > Sample Input Output
+```
+Input: arr = [0,3,2,1]
+Output: true
+
+Input: arr = [2,0,2]
+Output: false
+
+Input: arr = [3,5,5]
+Output: false
+```
+> My Approach
+```
+1.if is is less than 3 or going downward , it is not a mountain.
+2.When we go to a peak, we check the next values are down-ward or not.
+```
+> My Code
+```
+class Solution {
+public:
+    bool validMountainArray(vector<int>& arr) {
+        int sz=arr.size();
+        
+        if(sz<3 || arr[1]<arr[0])
+            return false;
+        
+        int i=0;
+        for(; i<sz-1; i++)
+        {
+            if((arr[i] > arr[i+1]))
+            {
+                i++;
+                break;
+            }
+            else if(arr[i]==arr[i+1])
+                return false;
+        }
+        
+        for(; i<sz; i++)
+        {
+            if(arr[i-1]<=arr[i])
+                return false;
+        }
+        return true;
     }
 };
 ```
