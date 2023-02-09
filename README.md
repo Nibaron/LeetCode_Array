@@ -458,3 +458,118 @@ public:
     }
 };
 ```
+**Task#8**
+## Replace Elements with Greatest Element on Right Side
+
+> Sample Input Output
+```
+Given an array arr, replace every element in that array with the greatest element among the elements to its right, 
+and replace the last element with -1.
+
+After doing so, return the array.
+Input: arr = [17,18,5,4,6,1]
+Output: [18,6,6,6,1,-1]
+Explanation: 
+- index 0 --> the greatest element to the right of index 0 is index 1 (18).
+- index 1 --> the greatest element to the right of index 1 is index 4 (6).
+- index 2 --> the greatest element to the right of index 2 is index 4 (6).
+- index 3 --> the greatest element to the right of index 3 is index 4 (6).
+- index 4 --> the greatest element to the right of index 4 is index 5 (1).
+- index 5 --> there are no elements to the right of index 5, so we put -1.
+
+Input: arr = [400]
+Output: [-1]
+Explanation: There are no elements to the right of index 0.
+```
+
+> My Approach
+We will use two variable, flag for vector value from last to first.
+Mx for max value from flag to last element. Initially it will be -1.
+mx will update with maximum value.
+
+> My Code
+```
+class Solution {
+public:
+    vector<int> replaceElements(vector<int>& arr) {
+        int sz=arr.size(),flag,mx=-1;
+       for(int i=sz-1;i>=0;i--)
+       {
+           flag=arr[i];
+           arr[i]=mx;
+           mx=max(mx,flag);
+       }
+        return arr;
+    }
+};
+```
+
+**Task#10**
+## Move Zeroes
+https://leetcode.com/explore/learn/card/fun-with-arrays/511/in-place-operations/3157/
+> Approach
+
+Two Pointer Rule
+> Code
+```
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        for (int i=0,j=0; i<nums.size(); i++)
+        {
+            if(nums[i])
+            {
+               swap(nums[i],nums[j]);
+               j++;
+            }
+        }
+    }
+};
+```
+**Task#11**
+## Sort Array by Parity
+
+> Sample Input and Output
+```
+Given an integer array nums, move all the even integers at the beginning of the array followed by all the odd integers.
+
+Return any array that satisfies this condition.
+
+ 
+
+Example 1:
+
+Input: nums = [3,1,2,4]
+Output: [2,4,3,1]
+Explanation: The outputs [4,2,3,1], [2,4,1,3], and [4,2,1,3] would also be accepted.
+Example 2:
+
+Input: nums = [0]
+Output: [0]
+```
+> Approach
+
+Two Pointer Rule
+> Code
+```
+class Solution {
+public:
+    vector<int> sortArrayByParity(vector<int>& nums) {
+        int i=0;
+        if(nums.size()<2)
+            return nums;
+        
+        for(int j=0; j<nums.size();j++)
+        {
+            if(nums[j] % 2 == 0)
+            {
+                swap(nums[j],nums[i]);
+                i++;
+            }
+        }
+        return nums;
+    }
+};
+```
+
+
