@@ -266,6 +266,7 @@ Since it is impossible to change the length of the array in some languages, you 
 Return k after placing the final result in the first k slots of nums.
 
 `Do not allocate extra space for another array`. You must do this by `modifying the input array` in-place with `O(1)` extra memory.
+
 > Sample Input Output
 ```
 Input: nums = [0,1,2,2,3,0,4,2], val = 2
@@ -321,7 +322,7 @@ public:
 ```
 
 **Task#6**
-Remove Duplicates from Sorted Array
+##Remove Duplicates from Sorted Array
 
 > Approach  `two pointer approach`
 
@@ -347,7 +348,7 @@ public:
 ```
 
 **Task#7**
- Check If N and Its Double Exist
+ ##Check If N and Its Double Exist
  
  > Sample Input Output
 ```
@@ -359,6 +360,7 @@ Output: false
 Explanation: There is no i and j that satisfy the conditions.
 ```
 > My Approach
+
 
 We can solve it using nested loop.
 
@@ -382,9 +384,11 @@ public:
 ```
 
 > Approach 2
+```
 We can solve it using the set function.
 1. First, create a set.
 2. For a value n, find 2*n or if n is even , find n/2.
+```
 
 > Code
 
